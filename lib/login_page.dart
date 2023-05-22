@@ -82,10 +82,25 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(15),
                       color: Color.fromARGB(255, 89, 53, 252)),
                   child: Center(
-                    child: Text('Sign In',style: TextStyle(color: Colors.white)),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              )
+              ),
+              SizedBox(height: 5),
+
+              //sign up link
+              Text(
+                'create new account',
+                style: TextStyle(
+                  color: Color.fromARGB(148, 89, 53, 252),
+                ),
+              ),
             ],
           ),
         ),
