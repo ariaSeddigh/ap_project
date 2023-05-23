@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -13,7 +11,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 171, 195, 246),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -79,8 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Color.fromARGB(255, 89, 53, 252)),
+                    borderRadius: BorderRadius.circular(15),
+                    color: Theme.of(context).accentColor,
+                  ),
                   child: Center(
                     child: Text(
                       'Login',
