@@ -1,5 +1,7 @@
+import 'package:approject/pages/home_page.dart';
+import 'package:approject/pages/signup_page.dart';
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
