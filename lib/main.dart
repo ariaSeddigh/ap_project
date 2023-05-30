@@ -1,8 +1,5 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:approject/pages/home_page.dart';
-import 'package:approject/pages/signup_page.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'pages/login_page.dart';
 import 'customMaterials/themes.dart';
 

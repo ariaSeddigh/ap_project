@@ -1,4 +1,4 @@
-import 'package:approject/pages/home_page.dart';
+import 'package:approject/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:approject/pages/signup_page.dart';
 
