@@ -37,7 +37,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: TextFormField(
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 214, 214, 246),
+                    fillColor: Theme.of(context).cardColor,
                     hintText: "Username",
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: TextFormField(
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 214, 214, 246),
+                    fillColor: Theme.of(context).cardColor,
                     hintText: "Email",
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -73,7 +73,7 @@ class _SignupPageState extends State<SignupPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 214, 214, 246),
+                    fillColor: Theme.of(context).cardColor,
                     hintText: "Password",
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -91,7 +91,7 @@ class _SignupPageState extends State<SignupPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 214, 214, 246),
+                    fillColor: Theme.of(context).cardColor,
                     hintText: "Confirm Password ",
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,

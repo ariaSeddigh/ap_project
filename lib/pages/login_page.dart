@@ -29,14 +29,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 30),
 
-
               //Email
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: TextFormField(
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 214, 214, 246),
+                    fillColor: Theme.of(context).cardColor,
                     hintText: "Email",
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -48,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
 
               SizedBox(height: 10),
 
-
               //Password
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -56,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Color.fromARGB(255, 214, 214, 246),
+                    fillColor: Theme.of(context).cardColor,
                     hintText: "Password",
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -67,7 +65,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               SizedBox(height: 15),
-
 
               //login button
               Padding(
@@ -92,7 +89,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 0),
 
-
               //create new account link
               TextButton(
                 onPressed: () {
@@ -102,9 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text(
                   'create new account',
                   style: TextStyle(
-                    color: Theme
-                        .of(context)
-                        .accentColor,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
               )
