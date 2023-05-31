@@ -12,9 +12,9 @@ class themes {
 
   ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color.fromARGB(255, 144, 134, 255),
-    accentColor: Color.fromARGB(255, 121, 107, 255),
-    canvasColor: Color.fromARGB(255, 232, 241, 255),
+    primaryColor: Color.fromARGB(255, 229, 131, 131),
+    accentColor: Color.fromARGB(255, 218, 89, 89),
+    canvasColor: Color.fromARGB(255, 255, 245, 245),
     cardColor: Color.fromARGB(255, 247, 247, 255),
   );
 
