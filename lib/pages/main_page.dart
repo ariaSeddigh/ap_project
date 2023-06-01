@@ -54,7 +54,6 @@ class _HomePage extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        buttonBackgroundColor: Color.fromARGB(255, 238, 57, 57),
         height: 50,
         onTap: (index) {
           _pageController.jumpToPage(index);
@@ -73,7 +72,8 @@ class _HomePage extends State<HomePage> {
             color: Colors.white,
           ),
         ],
-        backgroundColor: Theme.of(context).canvasColor,
+        // backgroundColor: Colors.transparent.withOpacity(0),
+        backgroundColor: Colors.transparent,
         animationCurve: Curves.fastLinearToSlowEaseIn,
         color: Theme.of(context).accentColor,
       ),

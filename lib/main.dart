@@ -1,4 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:approject/customMaterials/bookCover.dart';
+import 'package:approject/customMaterials/ebook_page.dart';
+import 'package:approject/pages/main_page.dart';
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
 import 'customMaterials/themes.dart';
@@ -18,8 +21,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
+
+
   @override
   Widget build(BuildContext context) {
+    Image testImage = Image.asset('lib/dataBase/images/eBookImages/image.jpg');
+
     bool isDark = false;
     var myTheme = themes();
     return MaterialApp(
@@ -27,7 +34,8 @@ class MyApp extends StatelessWidget {
       theme: myTheme.light,
       darkTheme: myTheme.dark,
       themeMode: EasyDynamicTheme.of(context).themeMode,
-      home: LoginPage(),
+      // home: eBookPage(),
+      home: HomePage(),
     ); //MaterialApp
 
   }

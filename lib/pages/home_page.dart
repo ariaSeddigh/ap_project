@@ -1,5 +1,8 @@
+import 'package:approject/customMaterials/bookRow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../customMaterials/bookCover.dart';
 
 class Home_page extends StatefulWidget {
   @override
@@ -9,6 +12,24 @@ class Home_page extends StatefulWidget {
 class _homePage extends State<Home_page> {
   @override
   Widget build(BuildContext context) {
+    Image testImage = Image.asset('lib/dataBase/images/eBookImages/image.jpg');
+
+    List<Book_Cover> trendings = [
+      Book_Cover(testImage, '1'),
+      Book_Cover(testImage, '2'),
+      Book_Cover(testImage, '3'),
+      Book_Cover(testImage, '4'),
+      Book_Cover(testImage, '5'),
+    ];
+    List<Book_Cover> newBooks = [
+      Book_Cover(testImage, '1'),
+      Book_Cover(testImage, '2'),
+      Book_Cover(testImage, '3'),
+      Book_Cover(testImage, '4'),
+      Book_Cover(testImage, '5'),
+    ];
+
+
     return SafeArea(
       child: Container(
         //Tab bars
@@ -20,16 +41,20 @@ class _homePage extends State<Home_page> {
                 Container(
                   decoration:
                       BoxDecoration(color: Theme.of(context).primaryColor),
-                  child: TabBar(
-                    //labelColor: Theme.of(context).accentColor,
-                    tabs: [
-                      Tab(
-                        child: Text('E-books'),
-                        icon: Icon(Icons.menu_book, color: Colors.white),
-                      ),
-                      Tab(
-                        child: Text('Audio books'),
-                        icon: Icon(Icons.audio_file, color: Colors.white),
+                  child: Column(
+                    children: [
+                      TabBar(
+                        //labelColor: Theme.of(context).accentColor,
+                        tabs: [
+                          Tab(
+                            child: Text('E-books'),
+                            icon: Icon(Icons.menu_book, color: Colors.white),
+                          ),
+                          Tab(
+                            child: Text('Audio books'),
+                            icon: Icon(Icons.audio_file, color: Colors.white),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -38,62 +63,22 @@ class _homePage extends State<Home_page> {
                   child: TabBarView(
                     children: [
                       //pdf book page
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text('page1', textAlign: TextAlign.center),
-                            SizedBox(height: 20),
+                      SingleChildScrollView(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text('page1', textAlign: TextAlign.center),
+                              SizedBox(height: 20),
 
-                            //Trending books
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Trending books',
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      Opacity(
-                                        child: Text('see more',
-                                            textAlign: TextAlign.right),
-                                        opacity: 0.5,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                              //Trending books
+                              BookRow('Trending books', trendings),
 
-                            SizedBox(height: 20),
+                              SizedBox(height: 20),
 
-                            //new books
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'new books',
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      Opacity(
-                                        child: Text('see more',
-                                            textAlign: TextAlign.right),
-                                        opacity: 0.5,
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
+                              //new books
+                              BookRow('new books', newBooks)
+                            ]),
+                      ),
 
                       //audiobooks page
                       Column(children: [

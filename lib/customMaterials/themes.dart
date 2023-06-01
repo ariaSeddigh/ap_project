@@ -34,7 +34,7 @@ class themes {
     textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
     primaryColor: Color.fromARGB(255, 1, 3, 24),
     // accentColor: Color.fromARGB(255, 218, 89, 89),
-    accentColor: Color.fromARGB(255, 0, 102, 143),
+    accentColor: Color.fromARGB(255, 85, 98, 140),
     canvasColor: Color.fromARGB(255, 32, 33, 47),
     cardColor: Color.fromARGB(255, 45, 52, 61),
   );
