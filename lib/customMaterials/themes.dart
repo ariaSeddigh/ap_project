@@ -10,11 +10,18 @@ class themes {
 
   //light theme
 
+  /*ThemeData light = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: Color.fromARGB(255, 229, 131, 131),
+    accentColor: Color.fromARGB(255, 245, 218, 218),
+    canvasColor: Colors.white,
+    cardColor: Color.fromARGB(255, 247, 247, 255),
+  );*/
   ThemeData light = ThemeData(
     brightness: Brightness.light,
     primaryColor: Color.fromARGB(255, 229, 131, 131),
     accentColor: Color.fromARGB(255, 218, 89, 89),
-    canvasColor: Color.fromARGB(255, 255, 245, 245),
+    canvasColor: Color.fromARGB(255, 252, 230, 230),
     cardColor: Color.fromARGB(255, 247, 247, 255),
   );
 
@@ -34,7 +41,7 @@ class themes {
     textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
     primaryColor: Color.fromARGB(255, 1, 3, 24),
     // accentColor: Color.fromARGB(255, 218, 89, 89),
-    accentColor: Color.fromARGB(255, 85, 98, 140),
+    accentColor: Color.fromARGB(255, 61, 74, 119),
     canvasColor: Color.fromARGB(255, 32, 33, 47),
     cardColor: Color.fromARGB(255, 45, 52, 61),
   );

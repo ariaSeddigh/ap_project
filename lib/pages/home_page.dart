@@ -81,9 +81,21 @@ class _homePage extends State<Home_page> {
                       ),
 
                       //audiobooks page
-                      Column(children: [
-                        Text('page2'),
-                      ]),
+                      SingleChildScrollView(
+                        child: Column(children: [
+                          Text('page2'),
+                          SizedBox(height: 20),
+
+                          //Trending books
+                          BookRow('Trending audio books', trendings),
+
+                          SizedBox(height: 20),
+
+                          //new books
+                          BookRow('new audio books', newBooks)
+
+                        ]),
+                      ),
                     ],
                   ),
                 ),
