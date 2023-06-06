@@ -6,6 +6,8 @@ import 'package:approject/customMaterials/themes.dart';
 import 'package:approject/pages/search_page.dart';
 import 'package:approject/pages/home_page.dart';
 
+import 'library_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -46,6 +48,7 @@ class _HomePage extends State<HomePage> {
           children: [
             //home page
             Home_page(),
+            Library_page(),
 
             Search_page(),
             //setting page
@@ -63,14 +66,20 @@ class _HomePage extends State<HomePage> {
             Icons.home,
             color: Colors.white,
           ),
+          //library
+          Icon(
+            Icons.library_books,
+            color: Colors.white,
+          ),
           Icon(
             Icons.search,
             color: Colors.white,
           ),
           Icon(
-            Icons.settings,
+            Icons.person,
             color: Colors.white,
           ),
+
         ],
         // backgroundColor: Colors.transparent.withOpacity(0),
         backgroundColor: Colors.transparent,

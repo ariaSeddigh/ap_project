@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       darkTheme: myTheme.dark,
       themeMode: EasyDynamicTheme.of(context).themeMode,
       // home: eBookPage(),
-      home: HomePage(),
+      home: LoginPage(),
     ); //MaterialApp
 
   }

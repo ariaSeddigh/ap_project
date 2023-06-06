@@ -1,7 +1,7 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sliding_switch/sliding_switch.dart';
+import '../customMaterials/userInformation.dart';
 
 class Setting_page extends StatefulWidget {
   @override
@@ -14,6 +14,8 @@ class _settingPage extends State<Setting_page> {
     return SafeArea(
       child: Container(
         child: Column(children: [
+          SizedBox(height: 20),
+          User_information(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100),
             child: ElevatedButton(
@@ -27,7 +29,20 @@ class _settingPage extends State<Setting_page> {
                         borderRadius: BorderRadius.circular(15))),
                 child: Text('dark/light mode')),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 5),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 100),
+            child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                    minimumSize: Size(400, 40),
+                    backgroundColor: Theme.of(context).accentColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15))),
+                child: Text('Upgrade account')),
+          ),
+          SizedBox(height: 5),
+
         ]),
       ),
     );
