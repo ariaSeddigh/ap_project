@@ -1,10 +1,9 @@
-import 'package:approject/customMaterials/myPasswordField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/main_page.dart';
 import '../pages/signup_page.dart';
-import 'dartServer/dartServer.dart';
+import 'myPasswordField.dart';
 
 class LoginBox extends StatefulWidget {
   @override
@@ -12,12 +11,10 @@ class LoginBox extends StatefulWidget {
 }
 
 class _LoginBox extends State<LoginBox> {
-  final _userNameController = TextEditingController();
-  final _passWordController = TextEditingController();
+
   bool passwordObscureText = true;
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         Column(
@@ -33,7 +30,6 @@ class _LoginBox extends State<LoginBox> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TextFormField(
-                controller: _userNameController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Theme.of(context).cardColor,
@@ -51,7 +47,7 @@ class _LoginBox extends State<LoginBox> {
             //Password
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: MyPasswordField(_passWordController),
+              child: MyPasswordField(),
             ),
 
             SizedBox(height: 15),
@@ -61,11 +57,9 @@ class _LoginBox extends State<LoginBox> {
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Container(
                 child: ElevatedButton(
-                  onPressed: () {/*
+                  onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));*/
-                    _logInButton();
-
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   style: ElevatedButton.styleFrom(
                       minimumSize: Size(400, 40),
@@ -99,13 +93,4 @@ class _LoginBox extends State<LoginBox> {
       ],
     );
   }
-  void _logInButton(){
-    String request = "login\n" +
-        _userNameController.text +
-        "\n" +
-        _passWordController.text +
-        "\n";
-    Server.sendRequest(request);
-  }
-
 }

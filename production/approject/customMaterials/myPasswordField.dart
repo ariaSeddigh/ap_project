@@ -2,21 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyPasswordField extends StatefulWidget {
-  MyPasswordField(this.controller):hintText = 'Password';
-  MyPasswordField.withCustomHintText(this.controller,this.hintText);
-  TextEditingController controller;
+  MyPasswordField():hintText = 'Password';
+  //overloaded constructor
+  MyPasswordField.customHintText(this.hintText);
   String hintText;
+
   @override
-  State<StatefulWidget> createState() => _MyPasswordField();
+  State<StatefulWidget> createState() => _MyPasswordField(hintText);
 }
 
 class _MyPasswordField extends State<MyPasswordField> {
+  _MyPasswordField(this.hintText);
   bool passwordObscureText = true;
-  final _passWordController = TextEditingController();
+  String hintText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: widget.controller,
       obscureText: passwordObscureText,
       decoration: InputDecoration(
         suffixIcon: IconButton(
@@ -31,7 +32,7 @@ class _MyPasswordField extends State<MyPasswordField> {
         ),
         filled: true,
         fillColor: Theme.of(context).cardColor,
-        hintText: widget.hintText,
+        hintText: hintText,
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(15),

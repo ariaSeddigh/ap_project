@@ -1,4 +1,4 @@
-package javaCodes;
+package javaCodes.classes.books;
 
 import java.nio.file.Path;
 
@@ -8,5 +8,6 @@ public interface book {
     int price = 0;
     String description = "";
     String imagesDirectory = "dataBase/images/";
+
 
 }

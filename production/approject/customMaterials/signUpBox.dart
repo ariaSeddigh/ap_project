@@ -1,5 +1,3 @@
-import 'package:approject/customMaterials/dartServer/dartServer.dart';
-import 'package:approject/customMaterials/myPasswordField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,15 +10,8 @@ class SignUpBox extends StatefulWidget {
 }
 
 class _signUpBox extends State<SignUpBox> {
-  final _userNameController = TextEditingController();
-  final _emailAddressController = TextEditingController();
-  final _passWordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    bool passwordObscureText = true;
-    bool confirmPasswordObscureText = true;
     return Column(
       children: [
         Text(
@@ -33,7 +24,6 @@ class _signUpBox extends State<SignUpBox> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: TextFormField(
-            controller: _userNameController,
             decoration: InputDecoration(
               filled: true,
               fillColor: Theme.of(context).cardColor,
@@ -51,7 +41,6 @@ class _signUpBox extends State<SignUpBox> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: TextFormField(
-            controller: _emailAddressController,
             decoration: InputDecoration(
               filled: true,
               fillColor: Theme.of(context).cardColor,
@@ -69,15 +58,14 @@ class _signUpBox extends State<SignUpBox> {
         //Password
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
-          child: MyPasswordField(_passWordController),
+          child: MyPasswordField(),
         ),
 
         SizedBox(height: 15),
         //re-enter password
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: MyPasswordField.withCustomHintText(
-                _confirmPasswordController, 'Confirm password')),
+            child: MyPasswordField.customHintText('Confirm Password')),
 
         SizedBox(height: 15),
 
@@ -86,7 +74,10 @@ class _signUpBox extends State<SignUpBox> {
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Container(
             child: ElevatedButton(
-              onPressed: _signInButton,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+              },
               style: ElevatedButton.styleFrom(
                   minimumSize: Size(400, 40),
                   backgroundColor: Theme.of(context).accentColor,
@@ -116,41 +107,5 @@ class _signUpBox extends State<SignUpBox> {
         ),
       ],
     );
-  }
-
-  //invalid email pop up
-  Future invalidInput(String text) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-            title: Text(text),
-            actions: [TextButton(onPressed: okButton, child: Text("ok"))],
-          ));
-
-  void okButton() {
-    Navigator.of(context).pop();
-    //_signInButton();
-  }
-
-  void _signInButton() {
-    /*
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()));*/
-    if (!_emailAddressController.text.contains("@")) {
-      invalidInput("Invalid Email!");
-      return;
-    }
-    if (_passWordController.text != _confirmPasswordController.text) {
-      invalidInput("confirm password and password does not match!");
-      return;
-    }
-
-    String request = "signup\n" +
-        _userNameController.text +
-        "\n" +
-        _emailAddressController.text +
-        "\n" +
-        _passWordController.text +
-        "\n";
-    Server.sendRequest(request);
   }
 }
