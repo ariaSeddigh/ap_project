@@ -5,8 +5,11 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.security.spec.ECField;
 import java.text.Format;
 import java.util.Formatter;
@@ -33,7 +36,24 @@ public class Controller {
             case "likeBook":
                 System.out.println((likeBook(request)));
                 break;
+            case "logOut":
+                System.out.println((log_out(request)));
+                break;
         }
+    }
+
+    private static String log_out(String request) {
+        try {
+            File directory = new File("lib\\dataBase\\currentUser");
+            File[] files = directory.listFiles();
+
+            for (File file : files) {
+                    file.delete();
+            }
+        }catch (Exception e){
+            return "error while logging out";
+        }
+        return "logged out";
     }
 
     private static String log_in(String request) {
@@ -56,6 +76,23 @@ public class Controller {
                 return "wrong password";
             }
         }catch (Exception e){}
+        String sourceDirectoryPath = usersFolderPath + userName;
+        String destinationDirectoryPath = "lib\\dataBase\\currentUser";
+
+
+        File sourceDirectory = new File(sourceDirectoryPath);
+        File destinationDirectory = new File(destinationDirectoryPath);
+
+        File[] files = sourceDirectory.listFiles();
+
+        for (File subFile : files) {
+            try {
+                Files.copy(subFile.toPath(), new File(destinationDirectory, subFile.getName()).toPath(),
+                        StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.out.println("Failed to copy the file: " + subFile.getName() + " - " + e.getMessage());
+            }
+        }
 
         return "successfully logged in!";
     }
@@ -91,6 +128,9 @@ public class Controller {
             fileWriter.flush();
             fileWriter.write(password + "\n");
             fileWriter.flush();
+
+            fileWriter = new FileWriter(directory + "\\"+ "bookList.txt");
+            fileWriter = new FileWriter(directory + "\\"+ "likedList.txt");
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
