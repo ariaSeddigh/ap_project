@@ -1,6 +1,8 @@
 import 'package:approject/customMaterials/myPasswordField.dart';
+import 'package:approject/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/main_page.dart';
 import '../pages/signup_page.dart';
@@ -37,7 +39,7 @@ class _LoginBox extends State<LoginBox> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Theme.of(context).cardColor,
-                  hintText: "Email",
+                  hintText: "Username",
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                     borderRadius: BorderRadius.circular(15),
@@ -99,13 +101,27 @@ class _LoginBox extends State<LoginBox> {
       ],
     );
   }
-  void _logInButton(){
+  Future<void> _logInButton() async {
     String request = "login\n" +
         _userNameController.text +
         "\n" +
         _passWordController.text +
         "\n";
-    Server.sendRequest(request);
+    String userName = await Server.sendRequest(request);
+    if(userName.contains("failed")){
+      print("failed username:"+ userName);
+      return;
+    }
+
+    print("logged in");
+    print("username:   "+userName);
+    Provider.of<AppData>(context, listen: false).currentUser = userName;
+    print("provider name: "+Provider.of<AppData>(context, listen: false).currentUser);
+    await Future.delayed(Duration(milliseconds: 500));
+
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => HomePage()));
+
   }
 
 }

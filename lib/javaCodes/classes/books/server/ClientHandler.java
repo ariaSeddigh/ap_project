@@ -32,7 +32,9 @@ public class ClientHandler extends Thread {
                 c = dis.read();
             }
 
-            Controller.handle(request.toString());
+            String response =  Controller.handle(request.toString());
+            dos.writeBytes(response);
+            dos.flush();
             dos.close();
             dis.close();
             socket.close();

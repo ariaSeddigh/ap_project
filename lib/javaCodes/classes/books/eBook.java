@@ -11,7 +11,7 @@ public class eBook implements book {
     static String eBooksPath = "lib/dataBase/books/eBooks/";
 
     public static void addNewBook() {
-        String bookName = "test";
+        String bookName = "test3";
         int price = 10;
         String description = "this is the book's description!";
         String author = "author";

@@ -1,7 +1,10 @@
+import 'package:approject/customMaterials/dartServer/dartServer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/login_page.dart';
+import 'package:approject/main.dart';
 
 class User_information extends StatefulWidget {
   @override
@@ -9,8 +12,14 @@ class User_information extends StatefulWidget {
 }
 
 class _userInformation extends State<User_information> {
+  final _creditController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    print('ok1');
+    getCredit();
+    Future.delayed(Duration(milliseconds: 500));
+    String credit = Provider.of<AppData>(context, listen: false).credit;
+    print('ok2');
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
@@ -26,20 +35,30 @@ class _userInformation extends State<User_information> {
               SizedBox(height: 30),
               CircleAvatar(
                   radius: 50,
-                  backgroundImage:
-                      AssetImage('lib/dataBase/images/eBookImages/image.jpg')),
+                  /*backgroundImage:
+                      AssetImage('lib/dataBase/images/eBookImages/image.jpg')*/),
               SizedBox(height: 30),
               Text(
-                'Your Name',
+                Provider.of<AppData>(context, listen: false).currentUser,
               ),
-              Text('credit: 10000\$'),
+              Text('credit: ${credit}\$' ),
               SizedBox(height: 10),
 
               //buy credit
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 80),
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text("Inter the amount:"),
+                            actions: [TextFormField(controller: _creditController,),TextButton(onPressed: (){
+                              Server.sendRequest("addCredit\n"+Provider.of<AppData>(context, listen: false).currentUser+"\n"+_creditController.text);
+                              Navigator.of(context).pop();
+                            }, child: Text("ok"))],
+                          ));
+                    },
                     style: ElevatedButton.styleFrom(
                         minimumSize: Size(400, 40),
                         backgroundColor: Theme.of(context).accentColor,
@@ -68,4 +87,13 @@ class _userInformation extends State<User_information> {
       ),
     );
   }
+
+  Future<void> getCredit() async {
+    // String value = await Server.sendRequest("credit\n"+Provider.of<AppData>(context).currentUser);
+    String value = await Server.sendRequest('credit\n${Provider.of<AppData>(context, listen: false).currentUser}');
+    Provider.of<AppData>(context, listen: false).credit = value;
+    print('val is: $value');
+
+  }
+
 }

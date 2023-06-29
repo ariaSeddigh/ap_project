@@ -3,15 +3,19 @@ import 'package:approject/customMaterials/bookCover.dart';
 import 'package:approject/customMaterials/ebook_page.dart';
 import 'package:approject/pages/main_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'pages/login_page.dart';
 import 'customMaterials/themes.dart';
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
   // runApp(const MyApp());
   runApp(
-    EasyDynamicThemeWidget(
-      child: MyApp(),
+    ChangeNotifierProvider(create: (context) => AppData(),
+      child: EasyDynamicThemeWidget(
+        child: MyApp(),
+      ),
     ),
   );
 
@@ -35,9 +39,22 @@ class MyApp extends StatelessWidget {
       darkTheme: myTheme.dark,
       themeMode: EasyDynamicTheme.of(context).themeMode,
       // home: eBookPage(),
-      home: LoginPage(),
+      home: Provider.of<AppData>(context).currentUser == 'default'? LoginPage(): HomePage(),
+      // home:LoginPage(),
+
+      /*if(Provider.of<AppData>(context).currentUser == '')
+      {}*/
     ); //MaterialApp
 
   }
 
 }
+
+
+class AppData extends ChangeNotifier {
+  bool logedIn = false;
+  String currentUser = 'default';
+  String credit = '0';
+
+}
+

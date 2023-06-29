@@ -2,6 +2,9 @@ import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../customMaterials/userInformation.dart';
+import 'package:provider/provider.dart';
+
+import '../main.dart';
 
 class Setting_page extends StatefulWidget {
   @override
@@ -30,7 +33,7 @@ class _settingPage extends State<Setting_page> {
                 child: Text('dark/light mode')),
           ),
           SizedBox(height: 5),
-          Padding(
+          /*Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100),
             child: ElevatedButton(
                 onPressed: () {},
@@ -40,7 +43,7 @@ class _settingPage extends State<Setting_page> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15))),
                 child: Text('Upgrade account')),
-          ),
+          ),*/
           SizedBox(height: 5),
 
         ]),
