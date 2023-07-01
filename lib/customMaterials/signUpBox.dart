@@ -143,6 +143,10 @@ class _signUpBox extends State<SignUpBox> {
       invalidInput("confirm password and password does not match!");
       return;
     }
+    if (_passWordController.text.length <8) {
+      invalidInput("password must be at least 8 characters!");
+      return;
+    }
 
     String request = "signup\n" +
         _userNameController.text +

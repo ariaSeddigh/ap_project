@@ -19,10 +19,6 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: Column(
             children: [
-              Text(
-                "*appName*",
-                style: TextStyle(fontSize: 25),
-              ),
               LoginBox(),
             ],
           ),

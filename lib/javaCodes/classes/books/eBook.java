@@ -11,19 +11,20 @@ public class eBook implements book {
     static String eBooksPath = "lib/dataBase/books/eBooks/";
 
     public static void addNewBook() {
-        String bookName = "test";
+        String bookName = "hp3";
         int price = 10;
         String description = "this is the book's description!";
         String author = "author";
         //pdf file
+//        String sourcePDF = "lib/dataBase/tempFiles/samplePDF.pdf";
         String sourcePDF = "lib/dataBase/tempFiles/samplePDF.pdf";
         Path _sourcePDFPath = Path.of(sourcePDF);
         Path destinationPDFPath = Path.of(eBooksPath + bookName+"/"+bookName+".pdf");
 
         //cover photo file
-        String sourceCoverPhoto = "lib/dataBase/tempFiles/sampleCoverPhoto.jpg";
+        String sourceCoverPhoto = "lib/dataBase/tempFiles/3.jpg";
         Path _sourceCoverPhotoPath = Path.of(sourceCoverPhoto);
-        Path destinationCoverPhotoPath = Path.of(eBooksPath + bookName+"/"+bookName+".jpg");
+        Path destinationCoverPhotoPath = Path.of(eBooksPath + bookName+"/coverImage.jpg");
 
 
         //creates a new folder for new book
@@ -31,6 +32,8 @@ public class eBook implements book {
         boolean folderCreated = bookFolder.mkdir();
 
         System.out.println(folderCreated ? "folder as been created!" : "failed to create new folder!!!(already exists)");
+        if(!folderCreated)
+            return;
 
         //creates a new TEXT file to storage book information (name,price,description and ...)
         try {
@@ -54,6 +57,10 @@ public class eBook implements book {
 
             Files.copy(_sourcePDFPath,destinationPDFPath, StandardCopyOption.REPLACE_EXISTING);
             Files.copy(_sourceCoverPhotoPath,destinationCoverPhotoPath, StandardCopyOption.REPLACE_EXISTING);
+
+            fileWriter = new FileWriter("lib\\dataBase\\books\\eBooks\\newBooks.txt",true);
+            fileWriter.write(bookName+"\n");
+            fileWriter.flush();
 
         } catch (IOException e) {
             System.out.println("failed to add new book! :(");

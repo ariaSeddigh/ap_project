@@ -20,11 +20,6 @@ class _SignupPageState extends State<SignupPage> {
         child: Center(
           child: Column(
             children: [
-              //Hello
-              Text(
-                "*appName*",
-                style: TextStyle(fontSize: 25),
-              ),
               SizedBox(height: 100),
               SignUpBox(),
             ],

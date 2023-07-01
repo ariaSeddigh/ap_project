@@ -124,7 +124,7 @@ class _homePage extends State<Home_page> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> trendings = ["test","test",];
+    List<String> trendings = ["test","hp3",];
     //List<Book_Cover> newBooks = trendings;
 
     Future<void> init() async {

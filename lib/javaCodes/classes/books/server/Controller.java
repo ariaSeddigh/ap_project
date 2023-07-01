@@ -59,8 +59,41 @@ public class Controller {
             case "userBooks":
 //                System.out.println((credit(request)));
                 return ((user_books(request)));
+            case "premium":
+//                System.out.println((credit(request)));
+                return ((premuim(request)));
+            case "premiumOff":
+//                System.out.println((credit(request)));
+                return ((premuimOff(request)));
         }
         return "unknown command";
+    }
+
+    private static String premuim(String request) {
+        Scanner sc = new Scanner(request);
+        sc.nextLine();
+        String userName = sc.nextLine();
+        try {
+            FileWriter fileWriter = new FileWriter("lib\\dataBase\\users\\" + userName + "\\premium.txt");
+            fileWriter.write("true");
+            fileWriter.flush();
+        } catch (Exception e) {
+
+        }
+        return "failed";
+    }
+    private static String premuimOff(String request) {
+        Scanner sc = new Scanner(request);
+        sc.nextLine();
+        String userName = sc.nextLine();
+        try {
+            FileWriter fileWriter = new FileWriter("lib\\dataBase\\users\\" + userName + "\\premium.txt");
+            fileWriter.write("false");
+            fileWriter.flush();
+        } catch (Exception e) {
+
+        }
+        return "failed";
     }
 
     private static String new_books(String request) {
@@ -69,47 +102,52 @@ public class Controller {
         try {
             FileReader fileReader = new FileReader(file);
             int c = fileReader.read();
-            while (c >0){
-                newBooks += (char)c;
+            while (c > 0) {
+                newBooks += (char) c;
                 c = fileReader.read();
             }
             return newBooks;
 
-        }catch (Exception e){return "failed";}
+        } catch (Exception e) {
+            return "failed";
+        }
     }
+
     private static String user_books(String request) {
         Scanner sc = new Scanner(request);
         sc.nextLine();
-        String userName=sc.nextLine();
-        File file = new File("lib\\dataBase\\users\\"+userName+"\\bookList.txt");
+        String userName = sc.nextLine();
+        File file = new File("lib\\dataBase\\users\\" + userName + "\\bookList.txt");
         String books = "";
         try {
             FileReader fileReader = new FileReader(file);
             int c = fileReader.read();
-            while (c >0){
-                books += (char)c;
+            while (c > 0) {
+                books += (char) c;
                 c = fileReader.read();
             }
-            System.out.println("books:"+books);
+            System.out.println("books:" + books);
             return books;
 
-        }catch (Exception e){return "failed";}
+        } catch (Exception e) {
+            return "failed";
+        }
     }
 
     private static String book_price(String request) {
         String price = "";
         Scanner sc = new Scanner(request);
         sc.nextLine();
-        String bookName=sc.nextLine();
-        File file = new File("C:\\Users\\Lenovo\\AndroidStudioProjects\\approject\\lib\\dataBase\\books\\eBooks\\"+bookName+"\\price.txt");
+        String bookName = sc.nextLine();
+        File file = new File("C:\\Users\\Lenovo\\AndroidStudioProjects\\approject\\lib\\dataBase\\books\\eBooks\\" + bookName + "\\price.txt");
         try {
             FileReader fileReader = new FileReader(file);
             int c = fileReader.read();
-            while (c >0){
-                price += (char)c;
+            while (c > 0) {
+                price += (char) c;
                 c = fileReader.read();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return price;
@@ -119,16 +157,16 @@ public class Controller {
         String description = "";
         Scanner sc = new Scanner(request);
         sc.nextLine();
-        String bookName=sc.nextLine();
-        File file = new File("C:\\Users\\Lenovo\\AndroidStudioProjects\\approject\\lib\\dataBase\\books\\eBooks\\"+bookName+"\\description.txt");
+        String bookName = sc.nextLine();
+        File file = new File("C:\\Users\\Lenovo\\AndroidStudioProjects\\approject\\lib\\dataBase\\books\\eBooks\\" + bookName + "\\description.txt");
         try {
             FileReader fileReader = new FileReader(file);
             int c = fileReader.read();
-            while (c >0){
-                description += (char)c;
+            while (c > 0) {
+                description += (char) c;
                 c = fileReader.read();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return description;
@@ -151,7 +189,6 @@ public class Controller {
             }
             int intNewCredit = Integer.parseInt(currentCredit) + amount;
             String newCredit = String.valueOf(intNewCredit);
-            System.out.println("hehe" + newCredit);
             FileWriter fileWriter = new FileWriter(path);
             fileWriter.write(newCredit);
             fileWriter.flush();
@@ -271,8 +308,11 @@ public class Controller {
 
             fileWriter = new FileWriter(directory + "\\" + "bookList.txt");
             fileWriter = new FileWriter(directory + "\\" + "likedList.txt");
+            fileWriter = new FileWriter(directory + "\\" + "premium.txt");
+            fileWriter.write("false");
+            fileWriter.flush();
             fileWriter = new FileWriter(directory + "\\" + "credit.txt");
-            fileWriter.write("0");
+            fileWriter.write("1000");
             fileWriter.flush();
             fileWriter.close();
         } catch (Exception e) {
@@ -290,24 +330,38 @@ public class Controller {
         String bookName = sc.nextLine();
         String price = sc.nextLine();
         //System.out.println("buying:"+userName+bookName+price);
-        String userBooks = user_books("userBooks\n"+userName+"\n");
+        String userBooks = user_books("userBooks\n" + userName + "\n");
 
-        if (userBooks.contains(bookName)){
+        if (userBooks.contains(bookName)) {
             //System.out.println("works fine");
             return "already have this book!";
         }
-        if (Integer.parseInt(price)>Integer.parseInt(credit("credit\n"+userName))){
+        boolean Premium = false;
+        try {
+            FileReader fileReader = new FileReader("lib\\dataBase\\users\\"+userName+"\\premium.txt");
+            String isPremium = "";
+            int c = fileReader.read();
+            while (c>0){
+                isPremium += (char)c;
+                c = fileReader.read();
+            }
+            if (isPremium.contains("ue")){
+                Premium = true;
+            }
+        }catch (Exception e){}
+        if (Integer.parseInt(price) > Integer.parseInt(credit("credit\n" + userName)) && !Premium) {
             return "not enough credit!";
         }
 
-        File directory = new File(usersFolderPath + userName+"\\bookList.txt");
+        File directory = new File(usersFolderPath + userName + "\\bookList.txt");
         try {
             FileWriter fileWriter = new FileWriter(directory, true);
-            fileWriter.write(bookName+"\n");
+            fileWriter.write(bookName + "\n");
             fileWriter.flush();
             fileWriter.close();
-            addCredit("addCredit\n"+userName+"\n-"+price);
-
+            if (!Premium){
+                addCredit("addCredit\n" + userName + "\n-" + price);
+            }
         } catch (Exception e) {
         }
         return "book added to user's list";
