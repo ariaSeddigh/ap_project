@@ -23,8 +23,12 @@ This is my Advanced Programming final project, implementing an e-book marketplac
 
 ## Screenshots
 
-<img width="591" height="1280" alt="Image" src="https://github.com/user-attachments/assets/799aff94-b619-484c-bba9-995e7cb4ea99" />
-<img width="591" height="1280" alt="Image" src="https://github.com/user-attachments/assets/39dab26c-3a56-4094-bad4-2b5c169043f0" />
-<img width="591" height="1280" alt="Image" src="https://github.com/user-attachments/assets/5827e10a-adb6-42e1-a883-0c27f45dab6a" />
-<img width="591" height="1280" alt="Image" src="https://github.com/user-attachments/assets/1deae3dc-33f5-4f79-9f90-b7950f80fb0e" />
-<img width="591" height="1280" alt="Image" src="https://github.com/user-attachments/assets/7cc6cbc4-006f-4176-9668-1daef7669ad3" />
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+<img src="https://github.com/user-attachments/assets/799aff94-b619-484c-bba9-995e7cb4ea99" width="200"/>
+<img src="https://github.com/user-attachments/assets/39dab26c-3a56-4094-bad4-2b5c169043f0" width="200"/>
+<img src="https://github.com/user-attachments/assets/5827e10a-adb6-42e1-a883-0c27f45dab6a" width="200"/>
+<img src="https://github.com/user-attachments/assets/1deae3dc-33f5-4f79-9f90-b7950f80fb0e" width="200"/>
+<img src="https://github.com/user-attachments/assets/7cc6cbc4-006f-4176-9668-1daef7669ad3" width="200"/>
+
+</div>
